@@ -1,21 +1,25 @@
 // ================================================
 //  Axios Instance — 3A Consulting
-//  Central HTTP client for all API requests
+//  Automatically uses localhost in dev,
+//  Render URL in production
 // ================================================
 
 import axios from "axios";
 
+// ✅ Dynamic base URL:
+//    In dev  → http://localhost:5000/api
+//    In prod → https://3a-consulting-backend.onrender.com/api
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",   // backend URL
+  baseURL: API_URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// ================================================
-//  Request Interceptor — auto-attach JWT token
-//  Runs before every request
-// ================================================
+// ---------- Request Interceptor — attach JWT ----------
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -27,18 +31,13 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ================================================
-//  Response Interceptor — handle 401 (token expired)
-// ================================================
+// ---------- Response Interceptor — handle 401 ----------
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid — clear it
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      // Optionally redirect to login
-      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }
