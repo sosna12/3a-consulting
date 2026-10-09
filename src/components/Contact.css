@@ -1,0 +1,20 @@
+/* Form alert */
+.form-alert {
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.form-alert.success {
+  background: #d4edda;
+  border-left: 4px solid #2b8a5c;
+  color: #22543d;
+}
+
+.form-alert.error {
+  background: #fee;
+  border-left: 4px solid #e53e3e;
+  color: #c53030;
+}

@@ -1,0 +1,38 @@
+# ============ NODE ============
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============ BUILD OUTPUT ============
+dist/
+build/
+
+# ============ ENV / SECRETS ============
+.env
+.env.local
+.env.*.local
+
+# ============ BACKEND UPLOADS (if you add uploads later) ============
+backend/uploads/
+
+# ============ VITE CACHE ============
+.vite/
+
+# ============ OS FILES ============
+.DS_Store
+Thumbs.db
+
+# ============ EDITOR ============
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ============ LOGS ============
+*.log
+logs/
+
+# ============ MISC ============
+.cache/
+.temp/
